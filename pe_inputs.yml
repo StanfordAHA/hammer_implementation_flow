@@ -1,0 +1,4 @@
+synthesis.inputs:
+  top_module: Tile_PE
+  input_files:
+    - "/home/jjthomas/garnet/garnet.sv"
