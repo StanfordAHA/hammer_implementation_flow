@@ -1,8 +1,10 @@
 # Technology Setup
 # Technology used is ASAP7
-vlsi.core.technology: asap7
+vlsi.core.technology: tsmc16
+vlsi.core.technology_path: ["/home/jjthomas/hammer-tsmc16-plugin"]
+technology.tsmc16.install_dir: "/tsmc16"
 # Specify dir with ASAP7 tarball
-technology.asap7.tarball_dir: "/cad/asap7"
+# technology.asap7.tarball_dir: "/cad/asap7"
 # Use install_dir, since we've already extracted tarball
 #technology.asap7.install_dir: "/cad/asap7"
 
@@ -30,10 +32,6 @@ par.blockage_spacing: 2.0
 par.generate_power_straps_options:
   by_tracks:
     strap_layers:
-      - M3
-      - M4
-      - M5
-      - M6
       - M7
       - M8
       - M9
@@ -72,7 +70,10 @@ vlsi.inputs.placement_constraints:
 vlsi.inputs.pin_mode: generated
 vlsi.inputs.pin.generate_mode: semi_auto
 vlsi.inputs.pin.assignments: [
-  {pins: "*", layers: ["M5", "M7"], side: "bottom"}
+  {pins: "{SB_*_EAST_SB_IN_B1_0* SB_*_EAST_SB_OUT_B1[*] SB_*_EAST_SB_IN_B16_0* SB_*_EAST_SB_OUT_B16*}", layers: ["M5", "M7"], side: "right"},
+  {pins: "{SB_*_SOUTH_SB_IN_B1_0* SB_*_SOUTH_SB_OUT_B1[*] SB_*_SOUTH_SB_IN_B16_0* SB_*_SOUTH_SB_OUT_B16* clk_out reset_out stall_out* config_out_config_* config_out_read* config_out_write* read_config_data[*]}", layers: ["M5", "M7"], side: "bottom"},
+  {pins: "{SB_*_WEST_SB_IN_B1_0* SB_*_WEST_SB_OUT_B1[*] SB_*_WEST_SB_IN_B16_0* SB_*_WEST_SB_OUT_B16* tile_id* hi* lo*}", layers: ["M5", "M7"], side: "left"},
+  {pins: "{SB_*_NORTH_SB_IN_B1_0* SB_*_NORTH_SB_OUT_B1[*] SB_*_NORTH_SB_IN_B16_0* SB_*_NORTH_SB_OUT_B16* clk reset stall* config_config_* config_read* config_write* read_config_data_in[*]}", layers: ["M5", "M7"], side: "top"}
 ]
 
 # SRAM Compiler compiler options
